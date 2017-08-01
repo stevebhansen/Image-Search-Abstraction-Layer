@@ -3,7 +3,7 @@
 
 // init project
 var express = require('express');
-var fetch = require('fetch');
+var fetchUrl = require("fetch").fetchUrl;
 var app = express();
 
 // we've started you off with Express, 
@@ -18,7 +18,7 @@ app.get("/", function (request, response) {
 });
 
 app.get("/dreams", function (request, response) {
-  fetch('https://api.cognitive.microsoft.com/bing/v5.0/images/cats', {
+  fetchUrl('https://api.cognitive.microsoft.com/bing/v5.0/images/search?q=sailing+dinghies&mkt=en-us', {
     method: 'get'
   }).then(function(response) {
 
