@@ -18,7 +18,7 @@ app.get("/", function (request, response) {
 });
 
 app.get("/dreams", function (request, response) {
-  fetchUrl('http://search.yahooapis.com/ImageSearchService/V1/imageSearch?appid=YahooDemo&query=Corvette&results=2', {
+  fetchUrl('https://www.googleapis.com/customsearch/v1?key=INSERT_YOUR_API_KEY&cx=017576662512468239146:omuauf_lfve&q=lectures', {
     method: 'get'
   }).then(function(response) {
 
