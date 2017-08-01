@@ -18,7 +18,7 @@ app.get("/", function (request, response) {
 });
 
 app.get("/dreams", function (request, response) {
-  fetchUrl('https://api.cognitive.microsoft.com/bing/v5.0/images/search?q=sailing+dinghies&mkt=en-us', {
+  fetchUrl('http://search.yahooapis.com/WebSearchService/V1/webSearch?appid=' + process.env.APIID + '&query=finances&format=pdf', {
     method: 'get'
   }).then(function(response) {
 
