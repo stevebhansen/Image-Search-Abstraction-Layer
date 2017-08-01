@@ -18,7 +18,7 @@ app.get("/", function (request, response) {
 });
 
 app.get("/dreams", function (request, response) {
-  fetchUrl('http://search.yahooapis.com/WebSearchService/V1/webSearch?appid=' + process.env.APIID + '&query=finances&format=pdf', {
+  fetchUrl('http://search.yahooapis.com/ImageSearchService/V1/imageSearch?appid=YahooDemo&query=Corvette&results=2', {
     method: 'get'
   }).then(function(response) {
 
