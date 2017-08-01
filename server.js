@@ -18,12 +18,12 @@ app.get("/", function (request, response) {
 });
 
 app.get("/dreams", function (request, response) {
-  fetch('https://davidwalsh.name/some/url', {
+  fetch('https://api.cognitive.microsoft.com/bing/v5.0/images/cats', {
     method: 'get'
   }).then(function(response) {
 
   }).catch(function(err) {
-    // Error :(
+    console.log(err);
   });
   var search = fetch('https://api.cognitive.microsoft.com/bing/v5.0/images/search');
   response.send(search);
