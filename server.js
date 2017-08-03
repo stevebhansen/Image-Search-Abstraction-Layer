@@ -18,29 +18,16 @@ app.get("/", function (request, response) {
 });
 
 app.get("/dreams", function (request, response) {
-  
   fetch('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=cats&searchType=image')
     .then(function(response) {
     console.log('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=cats&searchType=image');
-    console.log(response.value);
-    console.log(response.body.json());
-    console.log(response.items);
-        return response.value;
-    }).then(function(items) {
-        response.send(items);
-    });
-  /*
-  fetch()
-    .then(function(data) {
-      return data.items;
-  }).then(function(items){
-      return response.send(items);
-  })
-  .catch(function(err) {
-    //console.log('bummer');
-    console.log(err);
-  });
-    return response.send('hello steve, nice try');*/
+        return response.items;
+    }).then(function(item) {
+        response.send(item);
+    })
+     .catch(function(err) {
+          console.log(err);
+      });
 });
 
 
