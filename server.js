@@ -18,7 +18,6 @@ app.get("/", function (request, response) {
 });
 
 app.get("/dreams", function (request, response) {
-  console.log('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=lectures');
   /*fetchUrl('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=lectures')
     .then(function(searchData) {
       response.send(searchData);
@@ -29,11 +28,6 @@ app.get("/dreams", function (request, response) {
   response.send('hello steve, nice try');
 });
 
-// could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
-app.post("/dreams", function (request, response) {
-  dreams.push(request.query.dream);
-  response.sendStatus(200);
-});
 
 // Simple in-memory store for now
 var dreams = [
