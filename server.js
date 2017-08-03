@@ -18,7 +18,8 @@ app.get("/", function (request, response) {
 });
 
 app.get("/dreams", function (request, response) {
-  fetchUrl('https://www.googleapis.com/customsearch/v1?key=INSERT_YOUR_API_KEY&cx=017576662512468239146:omuauf_lfve&q=lectures', {
+  console.log('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=lectures');
+  fetchUrl('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=lectures', {
     method: 'get'
   }).then(function(response) {
 
