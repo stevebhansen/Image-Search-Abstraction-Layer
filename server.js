@@ -3,7 +3,7 @@
 
 // init project
 var express = require('express');
-var fetchUrl = require("fetch").fetchUrl;
+var fetch= require("node-fetch")
 var app = express();
 
 // we've started you off with Express, 
@@ -18,16 +18,27 @@ app.get("/", function (request, response) {
 });
 
 app.get("/dreams", function (request, response) {
-  /*fetchUrl('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=cats&searchType=image')
+  
+  fetch('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=cats&searchType=image')
+    .then(function(response) {
+        return response;
+    }).then(function(body) {
+        console.log(body);
+    });
+  /*
+  fetch()
     .then(function(data) {
-      response.send(data.items);
-  }).catch(function(err) {
-    console.log('bummer');
-    //console.log(err);
-  });*/
-  response.send('hello steve, nice try');
+      return data.items;
+  }).then(function(items){
+      return response.send(items);
+  })
+  .catch(function(err) {
+    //console.log('bummer');
+    console.log(err);
+  });
+    return response.send('hello steve, nice try');
 });
-
+*/
 
 // Simple in-memory store for now
 var dreams = [
