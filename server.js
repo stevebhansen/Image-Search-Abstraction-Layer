@@ -18,9 +18,9 @@ app.get("/", function (request, response) {
 });
 
 app.get("/dreams", function (request, response) {
-  /*fetchUrl('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=lectures')
-    .then(function(searchData) {
-      response.send(searchData);
+  /*fetchUrl('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=cats&searchType=image')
+    .then(function(data) {
+      response.send(data.items);
   }).catch(function(err) {
     console.log('bummer');
     //console.log(err);
