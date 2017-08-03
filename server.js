@@ -21,9 +21,11 @@ app.get("/dreams", function (request, response) {
   
   fetch('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=cats&searchType=image')
     .then(function(response) {
-        return response;
-    }).then(function(body) {
-        console.log(body);
+    console.log('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=cats&searchType=image');
+    console.log(response);
+        return response.items;
+    }).then(function(items) {
+        response.send(items);
     });
   /*
   fetch()
@@ -36,9 +38,9 @@ app.get("/dreams", function (request, response) {
     //console.log('bummer');
     console.log(err);
   });
-    return response.send('hello steve, nice try');
+    return response.send('hello steve, nice try');*/
 });
-*/
+
 
 // Simple in-memory store for now
 var dreams = [
