@@ -19,15 +19,14 @@ app.get("/", function (request, response) {
 
 app.get("/dreams", function (request, response) {
   console.log('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=lectures');
-  fetchUrl('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=lectures', {
-    method: 'get'
-  }).then(function(response) {
-
+  /*fetchUrl('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=lectures')
+    .then(function(searchData) {
+      response.send(searchData);
   }).catch(function(err) {
-    console.log(err);
-  });
-  var search = fetch('https://api.cognitive.microsoft.com/bing/v5.0/images/search');
-  response.send(search);
+    console.log('bummer');
+    //console.log(err);
+  });*/
+  response.send('hello steve, nice try');
 });
 
 // could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
