@@ -21,7 +21,7 @@ app.get("/dreams", function (request, response) {
   fetch('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=cats&searchType=image')
     .then(function(response) {
     console.log('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=cats&searchType=image');
-        return response.items;
+        return response;
     }).then(function(item) {
         response.send(item);
     })
