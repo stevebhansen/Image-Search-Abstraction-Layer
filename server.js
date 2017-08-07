@@ -18,9 +18,10 @@ app.get("/", function (request, response) {
 });
 
 app.get("/dreams", function (request, response) {
-  fetch('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=cats&searchType=image')
-    .then(function(response) {
-        return response.queries;
+  var results = new FormData();
+  fetch('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=cats&searchType=image',{method: "GET", body: results})
+    .then(function(response.) {
+        return response;
     }).then(function(item) {
         response.send(item);
     })
