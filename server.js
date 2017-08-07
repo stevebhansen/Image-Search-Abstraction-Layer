@@ -22,7 +22,7 @@ app.get("/dreams", function (request, response) {
     .then(function(response) {
     console.log('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=cats&searchType=image');
     
-        return response.length;
+        return response;
     }).then(function(item) {
         response.send(item);
     })
