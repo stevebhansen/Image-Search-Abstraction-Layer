@@ -23,7 +23,13 @@ app.get("/dreams", function (request, response) {
     .then(function(response) {
         return response.json();
     }).then(function(results) {
-        var item = results.items[0];
+        
+        var items = results.items;
+        var links = '<ul>';
+        items.foreach(function(item){
+          links += '<li><a href=' + item.link +'>'+ item.title + '</a></li>';
+        });
+        links += '</ul>'
         response.send(item);
     })
      .catch(function(err) {
