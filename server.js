@@ -25,12 +25,11 @@ app.get("/dreams", function (request, response) {
     }).then(function(results) {
         
         var items = results.items;
-        var links = '<ul>';
+        var links = [];
         items.foreach(function(item){
-          links += '<li><a href=' + item.link +'>'+ item.title + '</a></li>';
+          links.push(item.link);
         });
-        links += '</ul>'
-        response.send(item);
+        response.send(links);
     })
      .catch(function(err) {
           console.log(err);
