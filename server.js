@@ -1,3 +1,6 @@
+//todo return a list of previous search terms/times
+//mlab mongodb already created and storing searches
+
 // server.js
 // where your node app starts
 
@@ -40,7 +43,7 @@ app.get("/api/imagesearch/*", function (request, response) {
   var search_results;
   var start = request.query.offset ? request.query.offset : '1';
   var date = new Date();
-  var now = date.toString();
+  var ISO_time = date.toISOString();
   var search_string = `https://www.googleapis.com/customsearch/v1?key=${process.env.APIID}&cx=${process.env.ENGINE}&q=${request.params[0]}&searchType=image&start=${start}`;
   
   fetch(search_string,{method: "GET"})
@@ -64,7 +67,7 @@ app.get("/api/imagesearch/*", function (request, response) {
       return image_data;
     })
     .then((links)=>{
-      writedb({search: request.params[0], when: now });
+      writedb({term: request.params[0], when: ISO_time });
       response.send(links);
     })
     .catch(function(err) {
