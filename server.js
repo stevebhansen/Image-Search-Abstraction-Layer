@@ -17,9 +17,11 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-app.get("/api/imagesearch", function (request, response) {
+app.get("/api/imagesearch/*", function (request, response) {
   var results;
-  fetch('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=cats&searchType=image',{method: "GET", body: results})
+  var searchTerm = request.params[0];
+  response.send(`https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=${searchTerm}&searchType=image`);
+  fetch('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=${searchTerm}&searchType=image',{method: "GET", body: results})
     .then(function(response) {
         return response.json();
     }).then(function(results) {
