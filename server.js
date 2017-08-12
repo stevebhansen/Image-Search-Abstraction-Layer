@@ -7,8 +7,26 @@ var fetch= require("node-fetch");
 var MongoClient = require('mongodb').MongoClient;
 var app = express();
 
-// we've started you off with Express, 
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
+//setup and connect to mlab mongo db
+var url = 'mongodb://' + process.env.MONGO_USER + ':' + process.env.MONGO_PASSWORD + '@ds149700.mlab.com:49700/custom_image_search';
+var client = null;
+
+MongoClient.connect(url, function (err, db) {
+  if (err) {
+      console.log('Unable to connect to the mongoDB server. Error:', err);
+    } else {
+      console.log('Connection established to', url);
+      client = db;
+    }
+});
+
+var writedb = function (search_term){
+  var collection = client.collection('recent_searches');
+  collection.insert(search_term, function(err, data){
+      if(err) throw err;
+      console.log(JSON.stringify(search_term));
+  });
+}
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
@@ -21,6 +39,8 @@ app.get("/", function (request, response) {
 app.get("/api/imagesearch/*", function (request, response) {
   var search_results;
   var start = request.query.offset ? request.query.offset : '1';
+  var date = new Date();
+  var now = date.toString();
   var search_string = `https://www.googleapis.com/customsearch/v1?key=${process.env.APIID}&cx=${process.env.ENGINE}&q=${request.params[0]}&searchType=image&start=${start}`;
   
   fetch(search_string,{method: "GET"})
@@ -44,6 +64,7 @@ app.get("/api/imagesearch/*", function (request, response) {
       return image_data;
     })
     .then((links)=>{
+      writedb({search: request.params[0], when: now });
       response.send(links);
     })
     .catch(function(err) {
