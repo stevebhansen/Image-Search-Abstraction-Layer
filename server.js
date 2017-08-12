@@ -21,11 +21,15 @@ app.get("/api/imagesearch/*", function (request, response) {
   var search_results;
   var search_string = `https://www.googleapis.com/customsearch/v1?key=${process.env.APIID}&cx=${process.env.ENGINE}&q=${request.params[0]}&searchType=image`;
   //response.send(search_string);
-  fetch(search_string,{method: "GET", body: search_results})
+  fetch(search_string,{method: "GET"})
     .then(function(search_results) {
-        response.send(typeof search_results);
-        return search_results.json();
+        var items = search_results.items;
+        search_results.items.foreach(function(item){
+          
+        })
+        return results_json.json();
     }).then(function(results_json) {
+        response.send(results_json);
         var items = results_json.items;
         var links = [];
         items.foreach(function(item){
