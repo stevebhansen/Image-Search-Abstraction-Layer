@@ -30,13 +30,16 @@ app.get("/api/imagesearch/*", function (request, response) {
     })
     .then((data)=>{
       var links = [];
+      //this works yay!
+      response.send(data.items[0].link);
+      //fix the stuff under here
       data.items.foreach(function(item){
       links.push(item.link);
       });
-      response.send(links);
+      return links;
     })
     .then((links)=>{
-      
+      response.send(links);
     })
     .catch(function(err) {
           console.log(err);
