@@ -17,7 +17,7 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-app.get("/search", function (request, response) {
+app.get("/api/imagesearch", function (request, response) {
   var results;
   fetch('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=cats&searchType=image',{method: "GET", body: results})
     .then(function(response) {
