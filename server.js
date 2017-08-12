@@ -20,7 +20,6 @@ app.get("/", function (request, response) {
 app.get("/api/imagesearch/*", function (request, response) {
   var search_results;
   var search_string = `https://www.googleapis.com/customsearch/v1?key=${process.env.APIID}&cx=${process.env.ENGINE}&q=${request.params[0]}&searchType=image`;
-  //response.send(search_string);
   fetch(search_string,{method: "GET"})
     .then((search_results) => {
         return search_results.json();
@@ -29,11 +28,17 @@ app.get("/api/imagesearch/*", function (request, response) {
       return(response_data);
     })
     .then((data)=>{
-      var links = [];
+      var image_data = [];
       for (var i=0;i< data.items.length;i++){
-        links.push(data.items[i].link);
+        var temp = {
+          "url": data.items[i].link,
+          "snippet": data.items[i].snippet,
+          "thumbnail": data.items[i].image.thumbnailLink,
+          "context": data.items[i].image.contextLink
+        };
+        image_data.push(temp);
       }
-      return links;
+      return image_data;
     })
     .then((links)=>{
       response.send(links);
