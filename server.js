@@ -19,13 +19,13 @@ app.get("/", function (request, response) {
 
 app.get("/api/imagesearch/*", function (request, response) {
   var results;
-  var searchTerm = request.params[0];
-  response.send(`https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=${searchTerm}&searchType=image`);
-  fetch('https://www.googleapis.com/customsearch/v1?key=' + process.env.APIID + '&cx='+process.env.ENGINE +'&q=${searchTerm}&searchType=image',{method: "GET", body: results})
-    .then(function(response) {
+  var search_string = `https://www.googleapis.com/customsearch/v1?key=${process.env.APIID}&cx=${process.env.ENGINE}&q=${request.params[0]}&searchType=image`;
+  //response.send(search_string);
+  fetch(search_string,{method: "GET", body: results})
+    .then(function(search_response) {
+        response.send(search_response.json());
         return response.json();
     }).then(function(results) {
-        
         var items = results.items;
         var links = [];
         items.foreach(function(item){
