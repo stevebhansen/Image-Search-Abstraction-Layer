@@ -12,6 +12,7 @@
   "dependencies": {
     "express": "^4.15.3",
     "fetch": "^1.1.0",
+    "mongodb": "^2.2.31",
     "node-fetch": "^1.7.1"
   },
   "engines": {

@@ -3,7 +3,8 @@
 
 // init project
 var express = require('express');
-var fetch= require("node-fetch")
+var fetch= require("node-fetch");
+var MongoClient = require('mongodb').MongoClient;
 var app = express();
 
 // we've started you off with Express, 
@@ -19,8 +20,9 @@ app.get("/", function (request, response) {
 
 app.get("/api/imagesearch/*", function (request, response) {
   var search_results;
-  var start = request.params[1] ? request.params[1] : 0;
+  var start = request.query.offset ? request.query.offset : '1';
   var search_string = `https://www.googleapis.com/customsearch/v1?key=${process.env.APIID}&cx=${process.env.ENGINE}&q=${request.params[0]}&searchType=image&start=${start}`;
+  
   fetch(search_string,{method: "GET"})
     .then((search_results) => {
         return search_results.json();
@@ -48,14 +50,6 @@ app.get("/api/imagesearch/*", function (request, response) {
           console.log(err);
     });
 });
-
-
-// Simple in-memory store for now
-var dreams = [
-  "Find and count some sheep",
-  "Climb a really tall mountain",
-  "Wash the dishes"
-];
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
