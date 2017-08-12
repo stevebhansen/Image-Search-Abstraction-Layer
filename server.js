@@ -19,7 +19,8 @@ app.get("/", function (request, response) {
 
 app.get("/api/imagesearch/*", function (request, response) {
   var search_results;
-  var search_string = `https://www.googleapis.com/customsearch/v1?key=${process.env.APIID}&cx=${process.env.ENGINE}&q=${request.params[0]}&searchType=image`;
+  var start = request.params[1] ? request.params[1] : 0;
+  var search_string = `https://www.googleapis.com/customsearch/v1?key=${process.env.APIID}&cx=${process.env.ENGINE}&q=${request.params[0]}&searchType=image&start=${start}`;
   fetch(search_string,{method: "GET"})
     .then((search_results) => {
         return search_results.json();
