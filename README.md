@@ -1,27 +1,33 @@
-Welcome to the Glitch BETA
+Image Search Abstraction Layer
 =========================
 
-Click `Show` in the header to see your app live. Updates to your code will instantly deploy and update live.
+**User Stories:**
 
-**Glitch** is the friendly commmunity where you'll build the app of your dreams. Glitch lets you instantly create, remix, edit, and host an app, bot or site, and you can invite collaborators or helpers to simultaneously edit code with you.
+1. User Story: I can get the image URLs, alt text and page urls for a set of images relating to a given search string.
 
-Find out more [about Glitch](https://glitch.com/about).
+2. User Story: I can paginate through the responses by adding a ?offset=2 parameter to the URL.
 
-
-Your Project
-------------
-
-On the front-end,
-- edit `public/client.js`, `public/style.css` and `views/index.html`
-- drag in `assets`, like images or music, to add them to your project
-
-On the back-end,
-- your app starts at `server.js`
-- add frameworks and packages in `package.json`
-- safely store app secrets in `.env` (nobody can see this but you and people you invite)
+3. User Story: I can get a list of the most recently submitted search strings.
 
 
-Made by [Fog Creek](https://fogcreek.com/)
+**Example creation usage:**
+
+https://cloudy-crib.glitch.me/new/http://www.google.com
+
+**Example creation output:**
+
+{"original_url":"http://www.google.com","short_url":"https://cloudy-crib.glitch.me/13"}
+
+**Usage:**
+
+https://cloudy-crib.glitch.me/13
+
+**Will redirect to:**
+
+http://www.google.com
+
+
+Made by [Steve Hansen](https://www.freecodecamp.org/stevebhansen)
 -------------------
 
-\ ゜o゜)ノ
+https://www.freecodecamp.org/stevebhansen
