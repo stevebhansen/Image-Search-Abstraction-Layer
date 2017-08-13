@@ -40,7 +40,7 @@ app.get("/", function (request, response) {
 });
 
 app.get("/api/latest/imagesearch/", function(request, response){
-  client.collection("recent_searches").find({}, { term: 1, when: 1, _id:0 } ).toArray(function(err, results) {
+  client.collection("recent_searches").find({}, { term: 1, when: 1, _id:0 } ).limit(10).toArray(function(err, results) {
   if(err) throw err;
     else{
       if(results != null)

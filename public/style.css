@@ -15,7 +15,7 @@ body {
 
 h1 {
   font-weight: bold;
-  color: pink;
+  color: blue;
 }
 
 .bold {
@@ -74,7 +74,7 @@ footer {
 }
 
 footer > a {
-  color: #BBBBBB;
+  color: red;
 }
 
 .nicejob {
