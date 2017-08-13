@@ -43,10 +43,9 @@ app.get("/api/latest/imagesearch/", function(request, response){
   client.collection("recent_searches").find(function(err,doc){
     if(err) throw err;
     else{
-      if(doc != null) {
-        console.log(doc.vaule);
+      if(doc != null)
+        console.log(doc);
         response.send(typeof doc);
-      }
     }
   });
 });
