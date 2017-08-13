@@ -39,6 +39,16 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
+app.get("/api/latest/imagesearch/", function(request, response){
+  client.collection("recent_searches").find(function(err,doc){
+    if(err) throw err;
+    else{
+      if(doc != null)
+        response.send(typeof doc);
+    }
+  }).sort({_id:1}).limit(10);
+});
+
 app.get("/api/imagesearch/*", function (request, response) {
   var search_results;
   var start = request.query.offset ? request.query.offset : '1';
@@ -75,17 +85,7 @@ app.get("/api/imagesearch/*", function (request, response) {
     });
 });
 
-app.get("api/latest/imagesearch/", function(request, response){
-  var query = {url_count: parseInt(request.params[0])};
-  client.collection("recent_searches").find().sort({_id:1}).limit(10);
-  client.collection("recent_searches").findOne(query, function(err,doc){
-      if(err) throw err;
-      else{
-        if(doc != null)
-          response.redirect(doc.url);
-      }
-    });
-});
+
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
