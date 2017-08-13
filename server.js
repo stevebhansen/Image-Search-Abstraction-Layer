@@ -43,10 +43,12 @@ app.get("/api/latest/imagesearch/", function(request, response){
   client.collection("recent_searches").find(function(err,doc){
     if(err) throw err;
     else{
-      if(doc != null)
+      if(doc != null) {
+        console.log(doc.vaule);
         response.send(typeof doc);
+      }
     }
-  }).sort({_id:1}).limit(10);
+  });
 });
 
 app.get("/api/imagesearch/*", function (request, response) {
