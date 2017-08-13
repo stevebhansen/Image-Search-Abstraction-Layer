@@ -40,15 +40,15 @@ app.get("/", function (request, response) {
 });
 
 app.get("/api/latest/imagesearch/", function(request, response){
-  client.collection("recent_searches").find(function(err,doc){
-    if(err) throw err;
+  client.collection("recent_searches").find({}, { term: 1, when: 1, _id:0 } ).toArray(function(err, results) {
+  if(err) throw err;
     else{
-      if(doc != null)
-        console.log(doc);
-        response.send(typeof doc);
+      if(results != null)
+        response.send(results);
     }
   });
 });
+    
 
 app.get("/api/imagesearch/*", function (request, response) {
   var search_results;
